@@ -1,6 +1,5 @@
 # README - Instructions to Use
 
-Details:
 # **Generating the necessary packages to run the API - Requirements**
 - To generate the file with the requirements.txt type at the prompt: 
 ```
