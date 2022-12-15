@@ -1,0 +1,31 @@
+body {
+    background-color: #7339AB;
+    color: #F6F9FF;
+    font-family: sans-serif;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #625AD8;
+    font-weight: bold;
+    text-align: center;
+}
+
+main {
+    text-align: center;
+    padding: 2rem;
+}
+
+a {
+    background-color: #1F9CE4;
+    padding: 0.5rem 1rem;
+    color: #F6F9FF;
+    text-decoration: none;
+    border-radius: 0.5rem;
+}
+
+footer {
+    text-align: center;
+    background-color: #88F4FF;
+    padding: 1rem;
+}

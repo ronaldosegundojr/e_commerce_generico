@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Awesome Store</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="dark">
+    <header>
+        <h1>My Awesome Store</h1>
+    </header>
+    <main>
+        <h2>Our Products</h2>
+        <ul>
+            {% for product in products %}
+            <li>
+                <h3>{{ product.name }}</h3>
+                <p>Price: {{ product.price }}</p>
+                <p>Description: {{ product.description }}</p>
+                <p>Available: {{ product.available }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </main>
+    <footer>
+        <p>My Awesome Store 2023</p>
+    </footer>
+</body>
+</html>
