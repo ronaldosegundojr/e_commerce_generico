@@ -2,7 +2,7 @@
 
 Details:
 # **Generating the necessary packages to run the API - Requirements**
-- To generate the file with the requirements.txt type at the prompt: pip freeze > requirements.txt
+- To generate the file with the requirements.txt type at the prompt: ˋˋˋpip freeze > requirements.txtˋˋˋ
 Source: 'https://dicasdepython.com.br/como-criar-uma-virtual-env-e-um-arquivo-de-requirementstxt-no-python/#:~:text=Para%20criarmos%20o%20arquivo%20requirements,as%20versões%20que%20foram%20utilizadas.'
 
 # **Installing the necessary packages to run the API - Requirements**
