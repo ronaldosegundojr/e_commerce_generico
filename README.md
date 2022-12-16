@@ -5,12 +5,20 @@
 ```
 pip freeze > requirements.txt
 ```
+<<<<<<< HEAD
+=======
+Source: 'https://dicasdepython.com.br/como-criar-uma-virtual-env-e-um-arquivo-de-requirementstxt-no-python/#:~:text=Para%20criarmos%20o%20arquivo%20requirements,as%20versões%20que%20foram%20utilizadas.'
+>>>>>>> 695ec5b2e1cc6df9c03c58ec015eb19495637a9f
 
 # **Installing the necessary packages to run the API - Requirements**
 To install all packages contained in the requirements.txt file, type at the prompt: 
 ```
 pip install -r requirements.txt
 ```
+<<<<<<< HEAD
+=======
+Source: 'https://dicasdepython.com.br/como-criar-uma-virtual-env-e-um-arquivo-de-requirementstxt-no-python/#:~:text=Para%20criarmos%20o%20arquivo%20requirements,as%20versões%20que%20foram%20utilizadas.'
+>>>>>>> 695ec5b2e1cc6df9c03c58ec015eb19495637a9f
 
 # **Enabling the Virtual Env Virtual Environment**
 - Type at the prompt: 
@@ -28,9 +36,15 @@ venv/bin/activate (#if on Linux).
 deactivate
 ```
 
+<<<<<<< HEAD
 
 
 
 Sources:
 'https://dicasdepython.com.br/como-criar-uma-virtual-env-e-um-arquivo-de-requirementstxt-no-python/#:~:text=Para%20criarmos%20o%20arquivo%20requirements,as%20versões%20que%20foram%20utilizadas.'
 'https://huogerac.hashnode.dev/estrutura-e-organizacao-de-pastas-em-projetos-flask'
+=======
+# **Structure and organization of files in Flask and Flask-Admin**
+Source: 'https://huogerac.hashnode.dev/estrutura-e-organizacao-de-pastas-em-projetos-flask'
+
+>>>>>>> 695ec5b2e1cc6df9c03c58ec015eb19495637a9f
