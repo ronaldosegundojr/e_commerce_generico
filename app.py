@@ -8,9 +8,9 @@ from sqlalchemy import create_engine
 # Inicializando o ambiente
 app = Flask(__name__, template_folder='template')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost:3306/e_commerce_v2'
-
-
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@localhost:3306/e_commerce_v2'
+engine = create_engine("mysql://root:''@localhost:3306/e_commerce_v2", echo=True)
+#engine.execute('CREATE DATABASE e_commerce_v2')
 # Criando o banco de dados
 #engine = create_engine('mysql://root:root@localhost:3306/e_commerce_v2')
 #engine.execute("CREATE DATABASE e_commerce_v2")
@@ -36,7 +36,7 @@ def index():
     return render_template('index.html')
 
 @app.route('/products')
-def products():
+def products(products=None):
     products = Product.query.all()
     return render_template('/products/products.html')
 

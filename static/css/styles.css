@@ -1,12 +1,12 @@
 body {
-    background-color: #7339AB;
-    color: #F6F9FF;
+    background-color: #0D0D0D;
+    color: #ffffff;
     font-family: sans-serif;
 }
 
 h1 {
     font-size: 2rem;
-    color: #625AD8;
+    color: #ffffff;
     font-weight: bold;
     text-align: center;
 }
@@ -17,15 +17,16 @@ main {
 }
 
 a {
-    background-color: #1F9CE4;
+    background-color: #7121A6;
     padding: 0.5rem 1rem;
-    color: #F6F9FF;
+    color: #6BF2F2;
     text-decoration: none;
     border-radius: 0.5rem;
+    border: 1px solid #7B6FF3;
 }
 
 footer {
     text-align: center;
-    background-color: #88F4FF;
+    background-color: #F2F2F2;
     padding: 1rem;
 }
