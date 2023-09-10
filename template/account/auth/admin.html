@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração - My Awesome Store</title>
+    <link rel="stylesheet" href="../static/css/admin.css">
+</head>
+<body>
+    <header>
+        <h1>Administração</h1>
+    </header>
+    
+    <section class="users-section">
+        <h2>Usuários</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Usuário</th>
+                    <th>Senha</th>
+                    <th>Tipo</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.user }}</td>
+                    <td>{{ user.password }}</td>
+                    <td>{{ user.type }}</td>
+                    <td>
+                        <form action="/edit_user/{{ user.id }}" method="POST">
+                            <input type="text" name="user" placeholder="Novo usuário">
+                            <input type="text" name="password" placeholder="Nova senha">
+                            <input type="text" name="type" placeholder="Novo tipo">
+                            <button type="submit">Editar</button>
+                        </form>
+                        <form action="/delete_user/{{ user.id }}" method="POST">
+                            <button type="submit">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h3>Adicionar Novo Usuário</h3>
+        <form action="/create_user" method="POST">
+            <input type="text" name="user" placeholder="Usuário" required>
+            <input type="text" name="password" placeholder="Senha" required>
+            <input type="text" name="type" placeholder="Tipo" required>
+            <button type="submit">Adicionar</button>
+        </form>
+    </section>
+
+    <section class="products-section">
+        <h2>Produtos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Descrição</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>
+                        <form action="/edit_product/{{ product.id }}" method="POST">
+                            <input type="text" name="name" placeholder="Novo nome">
+                            <input type="text" name="price" placeholder="Novo preço">
+                            <input type="text" name="description" placeholder="Nova descrição">
+                            <button type="submit">Editar</button>
+                        </form>
+                        <form action="/delete_product/{{ product.id }}" method="POST">
+                            <button type="submit">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h3>Adicionar Novo Produto</h3>
+        <form action="/create_product" method="POST">
+            <input type="text" name="name" placeholder="Nome" required>
+            <input type="text" name="price" placeholder="Preço" required>
+            <input type="text" name="description" placeholder="Descrição" required>
+            <button type="submit">Adicionar</button>
+        </form>
+    </section>
+</body>
+</html>
