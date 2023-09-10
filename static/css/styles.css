@@ -1,19 +1,105 @@
+/* Estilos padrão para todos os dispositivos */
 body {
-    background-color: #0D0D0D;
+    background-image: url("../img/login-background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #333;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    height: 100%;
+}
+
+header {
+    background-color: rgba(113, 33, 166, 0.8);
     color: #ffffff;
-    font-family: sans-serif;
+    text-align: right;
+    padding: 1rem 0; /* Preenchimento vertical apenas */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Preenchimento horizontal */
+}
+
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%; /* Preenchimento horizontal */
+    position: relative;
 }
 
 h1 {
     font-size: 2rem;
-    color: #ffffff;
     font-weight: bold;
-    text-align: center;
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    margin: 0 1rem;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
 }
 
 main {
     text-align: center;
     padding: 2rem;
+}
+
+.content-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9));
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 1rem;
+    max-width: 300px;
+    width: 60%;
+    text-align: center;
+}
+
+.product img {
+    max-width: 100%;
+    border-radius: 0.5rem;
+}
+
+.price {
+    font-weight: bold;
+    color: #7121A6;
+    font-size: 1.25rem;
+    margin-top: 0.5rem;
 }
 
 a {
@@ -23,10 +109,23 @@ a {
     text-decoration: none;
     border-radius: 0.5rem;
     border: 1px solid #7B6FF3;
+    display: inline-block;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease-in-out;
+}
+
+a:hover {
+    background-color: #542287;
+    color: #ffffff;
 }
 
 footer {
+    background-color: rgba(255, 255, 255, 0.8);
     text-align: center;
-    background-color: #F2F2F2;
-    padding: 1rem;
+    padding: 1rem 0; /* Preenchimento vertical apenas */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Preenchimento horizontal */
+    position: relative;
+    bottom: 0;
+    margin-top: auto;
 }

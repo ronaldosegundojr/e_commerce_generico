@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Awesome Store - Login/Sign Up</title>
+    <link rel="stylesheet" href="../static/css/account.css">
+</head>
+<body class="dark">
+    <header>
+        <h1>My Awesome Store</h1>
+    </header>
+    <main>
+        <div class="content-container">
+            <h2>Login/Sign Up</h2>
+            <form action="">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Insira o seu Login" required>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Insira a sua senha" required>
+                
+                <!-- Campos adicionados para registro -->
+                <label for="name">Nome</label>
+                <input type="text" id="name" name="name" placeholder="Insira o seu Nome" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Insira o seu Email" required>
+                <label for="confirm_email">Confirme o Email</label>
+                <input type="email" id="confirm_email" name="confirm_email" placeholder="Confirme o seu Email" required>
+                <label for="password_register">Senha</label>
+                <input type="password" id="password_register" name="password_register" placeholder="Insira a sua senha" required>
+                <label for="confirm_password">Confirme a Senha</label>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirme a sua senha" required>
+                <label for="accept_terms">Eu aceito os termos de serviço do site</label>
+                <input type="checkbox" id="accept_terms" name="accept_terms" required>
+                
+                <button>Submit</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; My Awesome Store 2023</p>
+    </footer>
+</body>
+</html>

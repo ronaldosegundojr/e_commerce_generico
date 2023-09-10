@@ -10,11 +10,12 @@ app = Flask(__name__, template_folder='template')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@localhost:3306/e_commerce_v2'
 engine = create_engine("mysql://root:''@localhost:3306/e_commerce_v2", echo=True)
-#engine.execute('CREATE DATABASE e_commerce_v2')
+# engine.execute('CREATE DATABASE e_commerce_v2')
 # Criando o banco de dados
-#engine = create_engine('mysql://root:root@localhost:3306/e_commerce_v2')
-#engine.execute("CREATE DATABASE e_commerce_v2")
+# engine = create_engine('mysql://root:root@localhost:3306/e_commerce_v2')
+# engine.execute("CREATE DATABASE e_commerce_v2")
 db = SQLAlchemy(app)
+
 # Criando a classe do Produto
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -22,7 +23,7 @@ class Product(db.Model):
     price = db.Column(db.Float, nullable=False)
     description = db.Column(db.String(200))
     available = db.Column(db.Boolean, default=True)
-    
+
 # Criando a classe para os Usuários
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -36,9 +37,9 @@ def index():
     return render_template('index.html')
 
 @app.route('/products')
-def products(products=None):
+def products():
     products = Product.query.all()
-    return render_template('/products/products.html')
+    return render_template('/template/products/products.html', products=products)
 
 @app.route('/report')
 def report():
@@ -47,12 +48,16 @@ def report():
     return render_template('report.html')
 
 @app.route('/login')
-def auth():
-    return render_template('/auth/login.html')
+def login():
+    return render_template('/account/auth/login.html')
+
+@app.route('/account')
+def account():
+    return render_template('/account/account.html')
 
 @app.route('/register')
 def register():
-    return render_template('/auth/register.html')
+    return render_template('/account/auth/register.html')
 
 @app.route('/export_csv', methods=['POST'])
 def export_csv():
@@ -106,4 +111,3 @@ def delete_product(product_id):
 if __name__ == '__main__':
     app.run(debug=True)
     db.create_all()
-    

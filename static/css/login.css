@@ -1,0 +1,93 @@
+body {
+    background-image: url("..//img/login-background.jpg");
+    background-size: cover; /* Para cobrir toda a área do corpo */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita a repetição da imagem de fundo */
+    color: #fff; /* Cor do texto */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+header {
+    background-color: rgba(113, 33, 166, 0.8); /* Cor de cabeçalho com transparência */
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+    color: rgb(2, 2, 2); /* Cor do título do cabeçalho */
+}
+
+h2, p {
+    color:#333;
+}
+
+main {
+    text-align: center;
+    padding: 2rem;
+}
+
+.content-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente */
+    background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)); /* Gradiente suave */
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra mais proeminente */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 0.5rem;
+    color: #333; /* Cor do título do campo */
+}
+
+input {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc; /* Adiciona uma borda leve */
+    transition: border-color 0.3s ease-in-out;
+    font-size: 1rem; /* Tamanho de fonte adequado */
+    background-color: rgba(255, 255, 255, 0.8); /* Cor de fundo do campo */
+    color: #333; /* Cor do texto do campo */
+}
+
+input:focus {
+    border-color: #7121A6; /* Cor da borda quando o campo está em foco */
+    outline: none; /* Remove a borda padrão do navegador */
+}
+
+button {
+    background-color: #7121A6;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #542287; /* Cor de fundo ao passar o mouse */
+}
+
+footer {
+    background-color: rgba(255, 255, 255, 0.8); /* Cor de fundo do rodapé */
+    text-align: center;
+    padding: 1rem;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve na parte inferior */
+}
