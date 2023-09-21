@@ -3,28 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Awesome Store</title>
-    <link rel="stylesheet" href="./styles.css">
+    <title>My Awesome Store - Produtos</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
 </head>
 <body class="dark">
     <header>
-        <h1>My Awesome Store</h1>
+        <div class="header-container">
+            <div class="header-logo">
+                <h1>My Awesome Store</h1>
+            </div>
+            <div class="header-buttons">
+                <nav>
+                    <ul>
+                        <li><a href="/">Início</a></li>
+                        <li><a href="/products">Produtos</a></li>
+                        <li><a href="/account">Conta</a></li>
+                        <li><a href="#">Carrinho</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </header>
     <main>
-        <h2>Our Products</h2>
-        <ul>
-            {% for product in products %}
-            <li>
-                <h3>{{ product.name }}</h3>
-                <p>Price: {{ product.price }}</p>
-                <p>Description: {{ product.description }}</p>
-                <p>Available: {{ product.available }}</p>
-            </li>
-            {% endfor %}
-        </ul>
+        <div class="content-container">
+            <h2>Produtos</h2>
+            <div class="product-container">
+                {% for product in products %}
+                    <div class="product">
+                        <img src="{{ product.product_img }}" alt="{{ product.product_name }}">
+                        <h3>{{ product.product_name }}</h3>
+                        <p>{{ product.description }}</p>
+                        <span class="price">$ {{ product.final_price }}</span>
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </main>
     <footer>
-        <p>My Awesome Store 2023</p>
+        <p>&copy; My Awesome Store 2023</p>
     </footer>
 </body>
 </html>

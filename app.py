@@ -1,9 +1,8 @@
 # Criando o ambiente
-from flask import Flask, render_template, request, redirect, send_file
+from flask import Flask, render_template, request, redirect, session, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
-import mysql.connector
-import csv
 from sqlalchemy import create_engine
+
 
 # Inicializando o ambiente
 app = Flask(__name__, template_folder='template')
@@ -19,27 +18,36 @@ db = SQLAlchemy(app)
 # Criando a classe do Produto
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
-    price = db.Column(db.Float, nullable=False)
-    description = db.Column(db.String(200))
-    available = db.Column(db.Boolean, default=True)
+    product_id = db.Column(db.String(10), nullable=False)
+    product_name = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.Text)
+    product_img = db.Column(db.String(255))
+    price = db.Column(db.DECIMAL(10, 2), nullable=False)
+    discount = db.Column(db.DECIMAL(5, 2), default=0)
+    final_price = db.Column(db.DECIMAL(10, 2), server_default='0.00', onupdate='price - (price * discount / 100)')
+    product_date = db.Column(db.DATE)
+    quantity = db.Column(db.Integer, nullable=False)
+
 
 # Criando a classe para os Usuários
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user = db.Column(db.String(50), nullable=False)
-    password = db.Column(db.String(50), nullable=False)
-    type = db.Column(db.String(50), nullable=False)
+    user_privileges = db.Column(db.Integer, nullable=False)
+    name = db.Column(db.String(255), nullable=False)
+    username = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(255), nullable=False)
+    password = db.Column(db.String(255), nullable=False)
+    cellphone = db.Column(db.String(20), nullable=False)
 
 # Criando as rotas
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', logged_in=session.get('logged_in'))
 
 @app.route('/products')
 def products():
     products = Product.query.all()
-    return render_template('/template/products/products.html', products=products)
+    return render_template('products/products.html', products=products)
 
 @app.route('/report')
 def report():
@@ -47,34 +55,44 @@ def report():
     users = User.query.all()
     return render_template('report.html')
 
-@app.route('/login')
-def login():
-    return render_template('/account/auth/login.html')
-
+######### Rotas de Usuário #########
+app.secret_key = 'A0293JF0A20FKAS'
+# Rota de conta
 @app.route('/account')
 def account():
-    return render_template('/account/account.html')
+    if session.get('logged_in'):
+        user_id = session.get('user_id')
+        user = User.query.get(user_id)
+        return render_template('account/account.html', user=user)
+    else:
+        return redirect(url_for('login'))
 
-@app.route('/register')
-def register():
-    return render_template('/account/auth/register.html')
+# Rota de logout
+@app.route('/logout')
+def logout():
+    session.clear()  # Limpa a sessão, efetivamente fazendo logout
+    return redirect(url_for('login'))
 
-@app.route('/export_csv', methods=['POST'])
-def export_csv():
-    # Estabelecendo conexão com o banco de dados
-    c = mysql.connector.connect(user='root', password='root', database='e_commerce_v2')
-    cursor = c.cursor()
-    # Executando query para buscar os produtos
-    cursor.execute("SELECT * FROM products")
-    row = cursor.fetchall()
-    # Escrevendo os resultados no arquivo csv
-    with open('products.csv', 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(["name", "price", "description"])
-        writer.writerows(row)
-    # Fechando a conexão com o banco de dados
-    c.close()
-    return redirect('/products')
+# Rota de login
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        
+        # Consulta o banco de dados para verificar se o usuário existe
+        user = User.query.filter_by(username=username, password=password).first()
+        
+        if user:
+            session['logged_in'] = True
+            session['user_id'] = user.id  # Armazena o ID do usuário na sessão
+            flash('Login bem-sucedido!', 'success')  # Exibe uma mensagem de sucesso
+            return redirect(url_for('account'))
+        else:
+            flash('Credenciais incorretas. Tente novamente.', 'danger')  # Exibe uma mensagem de erro
+            return redirect(url_for('login'))
+    
+    return render_template('account/auth/login.html')
 
 #### teste nova rota ########
 # Rota de administração

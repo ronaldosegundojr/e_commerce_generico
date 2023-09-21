@@ -11,7 +11,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh; /* Garante que o corpo ocupa pelo menos a altura da tela */
 }
 
 header {
@@ -20,6 +20,9 @@ header {
     text-align: center;
     padding: 1rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    width: 100%; /* Preenchimento horizontal */
+    position: fixed; /* Fixa o cabeçalho no topo */
+    top: 0; /* Ancora o cabeçalho no topo */
 }
 
 h1 {
@@ -36,6 +39,7 @@ h2, p {
 main {
     text-align: center;
     padding: 2rem;
+    margin-top: 80px; /* Aumenta o espaço abaixo do cabeçalho para evitar sobreposição */
 }
 
 .content-container {
@@ -44,6 +48,8 @@ main {
     padding: 2rem;
     border-radius: 0.5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra mais proeminente */
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 form {
@@ -90,4 +96,7 @@ footer {
     text-align: center;
     padding: 1rem;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve na parte inferior */
+    width: 100%; /* Preenchimento horizontal */
+    position: fixed; /* Fixa o rodapé na parte inferior */
+    bottom: 0; /* Ancora o rodapé na parte inferior */
 }

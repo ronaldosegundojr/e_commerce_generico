@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Awesome Store - Login/Sign Up</title>
     <link rel="stylesheet" href="../static/css/login.css">
+    <script src="../../../static/js/login.js"></script>
 </head>
 <body class="dark">
     <header>
@@ -13,7 +14,7 @@
     <main>
         <div class="content-container">
             <h2>Login/Sign Up</h2>
-            <form action="">
+            <form action="/login" method="POST"> <!-- Definindo método POST e action para a rota /login -->
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Insira o seu Login" required>
                 <label for="password">Password</label>
