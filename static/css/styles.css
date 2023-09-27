@@ -25,7 +25,6 @@ header {
     width: 100%; /* Preenchimento horizontal */
 }
 
-
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -42,6 +41,8 @@ h1 {
     font-weight: bold;
     margin: 0;
 }
+
+
 
 nav ul {
     list-style: none;
@@ -64,14 +65,40 @@ main {
 }
 
 .content-container {
-    background-color: rgba(255, 255, 255, 0.9);
-    background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9));
+    background-image: url("../img/varejo-fundo-opcao2.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     padding: 2rem;
     border-radius: 0.5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 800px;
     margin: 0 auto;
+    filter: brightness(0.7); /* Valor menor para esmaecer a imagem */
 }
+
+/* Sobreposição semitransparente */
+.content-container::before {
+    content: "";
+    background-color: rgba(255, 255, 255, 0.678); /* Cor de sobreposição semitransparente */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Coloca a sobreposição atrás do conteúdo */
+    border-radius: 0.5rem;
+}
+
+/* Estilos para o texto dentro de .content-container */
+.content-container h2,
+.content-container p,
+.content-container  {
+    z-index: 1; /* Coloca o texto acima da sobreposição */
+    position: relative;
+    color: #333; /* Cor do texto */
+}
+
 
 .product-container {
     display: flex;
@@ -86,14 +113,18 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 1rem;
     max-width: 300px;
-    width: 60%;
+    width: 100%; /* Alteração para ocupar toda a largura disponível */
     text-align: center;
 }
 
 .product img {
     max-width: 100%;
-    border-radius: 0.5rem;
+    height: auto;
+    width: 100%;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 
 .price {
     font-weight: bold;
@@ -129,3 +160,4 @@ footer {
     bottom: 0;
     margin-top: auto;
 }
+

@@ -30,15 +30,17 @@
             <h2>Produtos</h2>
             <div class="product-container">
                 {% for product in products %}
-                    <div class="product">
-                        <img src="{{ product.product_img }}" alt="{{ product.product_name }}">
-                        <h3>{{ product.product_name }}</h3>
-                        <p>{{ product.description }}</p>
-                        <span class="price">$ {{ product.final_price }}</span>
-                        <a href="#">Adicionar ao Carrinho</a>
-                    </div>
+                <div class="product">
+                    <img src="../static/img/{{ product.product_img }}" alt="{{ product.product_name }}">
+                    <h3>{{ product.product_name }}</h3>
+                    <p>{{ product.description }}</p>
+                    <p>Quantidade: {{ product.quantity }}</p>
+                    <span class="price">R$ {{ product.final_price }}</span>
+                    <a href="#">Adicionar ao Carrinho</a>
+                </div>
                 {% endfor %}
             </div>
+            
         </div>
     </main>
     <footer>

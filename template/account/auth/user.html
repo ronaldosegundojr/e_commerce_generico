@@ -1,0 +1,39 @@
+<!-- user.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Conta</title>
+    <!-- Seus cabeçalhos de estilo e scripts aqui -->
+    <link rel="stylesheet" href="../static/css/account.css">
+</head>
+<body>
+    <header>
+        <h1>Minha Conta</h1>
+    </header>
+    <main>
+        <div class="user-info">
+            <h2>Informações do Usuário</h2>
+            <p><strong>Nome:</strong> {{ user.name }}</p>
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Telefone:</strong> {{ user.cellphone }}</p>
+            <!-- Adicione mais informações do usuário aqui -->
+            
+            <h2>Opções</h2>
+            <ul>
+                <li><a href="/edit_profile">Editar Perfil</a></li>
+                <li><a href="/orders">Histórico de Compras</a></li>
+                <li><a href="/cart">Carrinho</a></li>
+                <li><a href="/wishlist">Lista de Favoritos</a></li>
+                <li><a href="/logout">Sair</a></li>
+            </ul>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; Sua Loja 2023</p>
+    </footer>
+    <!-- Seus scripts JavaScript aqui -->
+</body>
+</html>

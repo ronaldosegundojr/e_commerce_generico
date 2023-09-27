@@ -27,14 +27,14 @@
                 {% for user in users %}
                 <tr>
                     <td>{{ user.id }}</td>
-                    <td>{{ user.user }}</td>
+                    <td>{{ user.username }}</td>
                     <td>{{ user.password }}</td>
-                    <td>{{ user.type }}</td>
+                    <td>{{ user.user_privileges }}</td>
                     <td>
                         <form action="/edit_user/{{ user.id }}" method="POST">
-                            <input type="text" name="user" placeholder="Novo usuário">
+                            <input type="text" name="username" placeholder="Novo usuário">
                             <input type="text" name="password" placeholder="Nova senha">
-                            <input type="text" name="type" placeholder="Novo tipo">
+                            <input type="text" name="user_privileges" placeholder="Novo tipo">
                             <button type="submit">Editar</button>
                         </form>
                         <form action="/delete_user/{{ user.id }}" method="POST">
@@ -47,9 +47,9 @@
         </table>
         <h3>Adicionar Novo Usuário</h3>
         <form action="/create_user" method="POST">
-            <input type="text" name="user" placeholder="Usuário" required>
+            <input type="text" name="username" placeholder="Usuário" required>
             <input type="text" name="password" placeholder="Senha" required>
-            <input type="text" name="type" placeholder="Tipo" required>
+            <input type="text" name="user_privileges" placeholder="Tipo" required>
             <button type="submit">Adicionar</button>
         </form>
     </section>
@@ -70,12 +70,12 @@
                 {% for product in products %}
                 <tr>
                     <td>{{ product.id }}</td>
-                    <td>{{ product.name }}</td>
+                    <td>{{ product.product_name }}</td>
                     <td>{{ product.price }}</td>
                     <td>{{ product.description }}</td>
                     <td>
                         <form action="/edit_product/{{ product.id }}" method="POST">
-                            <input type="text" name="name" placeholder="Novo nome">
+                            <input type="text" name="product_name" placeholder="Novo nome">
                             <input type="text" name="price" placeholder="Novo preço">
                             <input type="text" name="description" placeholder="Nova descrição">
                             <button type="submit">Editar</button>
@@ -90,7 +90,7 @@
         </table>
         <h3>Adicionar Novo Produto</h3>
         <form action="/create_product" method="POST">
-            <input type="text" name="name" placeholder="Nome" required>
+            <input type="text" name="product_name" placeholder="Nome" required>
             <input type="text" name="price" placeholder="Preço" required>
             <input type="text" name="description" placeholder="Descrição" required>
             <button type="submit">Adicionar</button>

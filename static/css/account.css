@@ -1,7 +1,7 @@
 /* CSS para a página account.html */
 
 body {
-    background-image: url("..//img/login-background.jpg");
+    background-image: url("../img/login-background.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -42,7 +42,6 @@ main {
 
 .content-container {
     background-color: rgba(255, 255, 255, 0.9);
-    background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9));
     padding: 2rem;
     border-radius: 0.5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -81,6 +80,7 @@ button {
     border-radius: 0.5rem;
     border: none;
     transition: background-color 0.3s ease-in-out;
+    cursor: pointer; /* Adicionei um estilo de cursor ao botão */
 }
 
 button:hover {
@@ -95,3 +95,12 @@ footer {
 }
 
 /* Estilo adicional pode ser adicionado aqui conforme necessário */
+
+/* Estilos específicos para a página de conta */
+.user-info, .order-history, .wishlist, .account-settings {
+    background-color: rgba(255, 255, 255, 0.9);
+    margin: 2rem 0;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

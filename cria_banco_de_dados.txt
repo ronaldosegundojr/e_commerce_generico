@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS User (
     cellphone VARCHAR(20) NOT NULL
 );
 
--- Tabela Product
+-- Tabela Product (Lembrar de na coluna product_img colocar o nome do arquivo da imagem, exemplo product1.jpeg, está sendo puxado no products na classe product-container)
 CREATE TABLE IF NOT EXISTS Product (
     id INT AUTO_INCREMENT PRIMARY KEY,
     product_id VARCHAR(10) NOT NULL,
@@ -35,16 +35,7 @@ VALUES
     ('P003', 'Product 3', 'Description of Product 3', 'product3.jpg', 29.99, 0, '2023-09-22', 120),
     ('P004', 'Product 4', 'Description of Product 4', 'product4.jpg', 34.99, 15, '2023-09-23', 90),
     ('P005', 'Product 5', 'Description of Product 5', 'product5.jpg', 39.99, 8, '2023-09-24', 110),
-    ('P006', 'Product 6', 'Description of Product 6', 'product6.jpg', 44.99, 0, '2023-09-25', 70),
-    ('P007', 'Product 7', 'Description of Product 7', 'product7.jpg', 49.99, 20, '2023-09-26', 60),
-    ('P008', 'Product 8', 'Description of Product 8', 'product8.jpg', 54.99, 12, '2023-09-27', 150),
-    ('P009', 'Product 9', 'Description of Product 9', 'product9.jpg', 59.99, 0, '2023-09-28', 200),
-    ('P010', 'Product 10', 'Description of Product 10', 'product10.jpg', 64.99, 5, '2023-09-29', 75),
-    ('P011', 'Product 11', 'Description of Product 11', 'product11.jpg', 69.99, 0, '2023-09-30', 90),
-    ('P012', 'Product 12', 'Description of Product 12', 'product12.jpg', 74.99, 18, '2023-10-01', 40),
-    ('P013', 'Product 13', 'Description of Product 13', 'product13.jpg', 79.99, 0, '2023-10-02', 60),
-    ('P014', 'Product 14', 'Description of Product 14', 'product14.jpg', 84.99, 10, '2023-10-03', 110),
-    ('P015', 'Product 15', 'Description of Product 15', 'product15.jpg', 89.99, 0, '2023-10-04', 85);
+
 
 -- Inserir 5 usuários de exemplo
 INSERT INTO User (user_privileges, name, username, email, password, cellphone)
