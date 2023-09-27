@@ -101,6 +101,8 @@ def login():
     
     return render_template('account/auth/login.html')
 
+
+
 #### Rotas de ADMIN ########
 # Função para verificar se o usuário está logado
 def is_logged_in():

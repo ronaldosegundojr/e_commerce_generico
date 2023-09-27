@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras - "SUA MARCA AQUI"</title>
+    <link rel="stylesheet" href="../static/css/cart.css">
+</head>
+<body>
+    <header>
+        <h1>Carrinho de Compras</h1>
+    </header>
+    <main>
+        <div class="cart-container">
+            <!-- Loop para exibir os itens do carrinho -->
+            {% for item in cart_items %}
+                <div class="cart-item">
+                    <img src="{{ item.product.product_img }}" alt="{{ item.product.product_name }}">
+                    <h3>{{ item.product.product_name }}</h3>
+                    <p>Descrição: {{ item.product.description }}</p>
+                    <p>Preço: R$ {{ item.product.final_price }}</p>
+                    <p>Quantidade: {{ item.quantity }}</p>
+                    <p>Total: R$ {{ item.total_price }}</p>
+                    <a href="#" onclick="removeFromCart('{{ item.product.id }}')">Remover do Carrinho</a>
+                </div>
+            {% endfor %}
+
+            <!-- Mostrar o total geral do carrinho -->
+            <div class="cart-total">
+                <h2>Total Geral: R$ {{ cart_total }}</h2>
+            </div>
+
+            <!-- Botão para finalizar a compra -->
+            <div class="checkout-button">
+                <a href="/checkout">Finalizar Compra</a>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; "SUA MARCA AQUI" 2023</p>
+    </footer>
+
+    <script src="../static/js/cart.js"></script>
+</body>
+</html>
