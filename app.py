@@ -152,13 +152,14 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username']
+        username_or_email = request.form['username_or_email']  # Altere o nome do campo para 'username_or_email'
         password = request.form['password']
         
         # Consulta o banco de dados para verificar se o usuário existe
-        user = User.query.filter_by(username=username, password=password).first()
+        # Modifique a consulta para verificar tanto o username quanto o e-mail
+        user = User.query.filter((User.username == username_or_email) | (User.email == username_or_email)).first()
         
-        if user:
+        if user and user.password == password:  # Compare a senha diretamente
             session['logged_in'] = True
             session['user_id'] = user.id  # Armazena o ID do usuário na sessão
             flash('Login bem-sucedido!', 'success')  # Exibe uma mensagem de sucesso
@@ -174,7 +175,6 @@ def login():
             return redirect(url_for('login'))
     
     return render_template('account/auth/login.html')
-#
 
 
 ####################################

@@ -14,13 +14,14 @@
     <main>
         <div class="content-container">
             <h2>Login/Sign Up</h2>
-            <form action="/login" method="POST"> <!-- Definindo método POST e action para a rota /login -->
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Insira o seu Login" required>
+            <form action="/login" method="POST">
+                <label for="username_or_email">Username or Email</label>
+                <input type="text" id="username_or_email" name="username_or_email" placeholder="Insira o seu Login ou Email" required>
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Insira a sua senha" required>
                 <button>Submit</button>
             </form>
+            
         </div>
     </main>
     <footer>
