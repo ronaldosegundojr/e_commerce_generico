@@ -1,100 +1,77 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administração - My Awesome Store</title>
-    <link rel="stylesheet" href="../static/css/admin.css">
+    <title>Administração</title>
 </head>
 <body>
-    <header>
-        <h1>Administração</h1>
-    </header>
-    
-    <section class="users-section">
-        <h2>Usuários</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Usuário</th>
-                    <th>Senha</th>
-                    <th>Tipo</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for user in users %}
+    <h1>Painel de Administração</h1>
+
+    <!-- Usuários -->
+    <h2>Usuários</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Username</th>
+                <th>E-mail</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
                 <tr>
                     <td>{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
                     <td>{{ user.username }}</td>
-                    <td>{{ user.password }}</td>
-                    <td>{{ user.user_privileges }}</td>
+                    <td>{{ user.email }}</td>
                     <td>
-                        <form action="/edit_user/{{ user.id }}" method="POST">
-                            <input type="text" name="username" placeholder="Novo usuário">
-                            <input type="text" name="password" placeholder="Nova senha">
-                            <input type="text" name="user_privileges" placeholder="Novo tipo">
-                            <button type="submit">Editar</button>
-                        </form>
-                        <form action="/delete_user/{{ user.id }}" method="POST">
-                            <button type="submit">Excluir</button>
+                        <a href="{{ url_for('edit_user', user_id=user.id) }}">Editar</a>
+                        <form method="post" action="{{ url_for('delete_user', user_id=user.id) }}">
+                            <input type="submit" value="Excluir">
                         </form>
                     </td>
                 </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <h3>Adicionar Novo Usuário</h3>
-        <form action="/create_user" method="POST">
-            <input type="text" name="username" placeholder="Usuário" required>
-            <input type="text" name="password" placeholder="Senha" required>
-            <input type="text" name="user_privileges" placeholder="Tipo" required>
-            <button type="submit">Adicionar</button>
-        </form>
-    </section>
+            {% endfor %}
+        </tbody>
+    </table>
 
-    <section class="products-section">
-        <h2>Produtos</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Preço</th>
-                    <th>Descrição</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for product in products %}
+    <!-- Produtos -->
+    <h2>Produtos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
                 <tr>
                     <td>{{ product.id }}</td>
                     <td>{{ product.product_name }}</td>
-                    <td>{{ product.price }}</td>
                     <td>{{ product.description }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.quantity }}</td>
                     <td>
-                        <form action="/edit_product/{{ product.id }}" method="POST">
-                            <input type="text" name="product_name" placeholder="Novo nome">
-                            <input type="text" name="price" placeholder="Novo preço">
-                            <input type="text" name="description" placeholder="Nova descrição">
-                            <button type="submit">Editar</button>
-                        </form>
-                        <form action="/delete_product/{{ product.id }}" method="POST">
-                            <button type="submit">Excluir</button>
+                        <a href="{{ url_for('edit_product', product_id=product.id) }}">Editar</a>
+                        <form method="post" action="{{ url_for('delete_product', product_id=product.id) }}">
+                            <input type="submit" value="Excluir">
                         </form>
                     </td>
                 </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <h3>Adicionar Novo Produto</h3>
-        <form action="/create_product" method="POST">
-            <input type="text" name="product_name" placeholder="Nome" required>
-            <input type="text" name="price" placeholder="Preço" required>
-            <input type="text" name="description" placeholder="Descrição" required>
-            <button type="submit">Adicionar</button>
-        </form>
-    </section>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('create_user') }}">Adicionar Novo Usuário</a>
+    <a href="{{ url_for('create_product') }}">Adicionar Novo Produto</a>
+    <a href="{{ url_for('logout') }}">Sair</a>
 </body>
 </html>

@@ -1,24 +1,32 @@
+/* Estilos gerais */
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 header {
     background-color: #333;
     color: #fff;
     text-align: center;
+    padding: 20px 0;
+}
+
+header h1 {
+    margin: 0;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
 }
 
-section {
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-}
-
+/* Estilos para a tabela de usuários e produtos */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 table, th, td {
@@ -35,23 +43,71 @@ th {
     color: #fff;
 }
 
-form {
-    margin-top: 10px;
+/* Formulário de edição */
+#user-form, #product-form {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: none;
 }
 
-input[type="text"] {
-    padding: 5px;
-    margin-right: 10px;
+.form-group {
+    margin-bottom: 10px;
 }
 
-button {
-    padding: 5px 10px;
+.form-group label {
+    display: block;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.form-actions {
+    margin-top: 20px;
+}
+
+.form-actions button {
+    padding: 10px 20px;
     background-color: #333;
     color: #fff;
     border: none;
     cursor: pointer;
+    margin-right: 10px;
 }
 
-button:hover {
-    background-color: #555;
+.form-actions button#user-cancel, .form-actions button#product-cancel {
+    background-color: #ccc;
+    color: #333;
+}
+
+/* Estilos para o rodapé */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #333;
+    color: #fff;
+}
+
+/* Estilos para mensagens de erro e sucesso (usadas pelo JavaScript) */
+.message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.message.success {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.message.error {
+    background-color: #F44336;
+    color: #fff;
 }

@@ -3,31 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - My Awesome Store</title>
+    <title>Registrar - "SUA MARCA AQUI"</title>
     <link rel="stylesheet" href="../static/css/register.css">
     <script src="../static/js/register.js"></script>
 </head>
 <body>
     <header>
         <div class="header-container">
-            <h1>Register for My Awesome Store</h1>
+            <h1>Registrar</h1>
         </div>
     </header>
     <main>
         <div class="form-container">
             <form id="register-form" action="/register" method="post">
-                <label for="username">Username</label>
+                <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
-                <label for="email">Email</label>
+                <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
-                <label for="password">Password</label>
+                <span id="email-validation-message" style="color: red;"></span> <!-- Mensagem de validação do e-mail -->
+                <label for="password">Senha:</label>
                 <input type="password" id="password" name="password" required>
-                <button type="submit">Register</button>
+                <!-- Exibir a força da senha aqui -->
+                <div id="password-strength"></div>
+                <button type="button" id="register-button">Registrar</button>
+                <p>Já possui conta? <a href="/login">Fazer login</a></p>
             </form>
+            <div id="error-message" style="color: red;"></div> <!-- Elemento para exibir mensagens de erro -->
         </div>
     </main>
     <footer>
-        <p>&copy; My Awesome Store 2023</p>
+        <p>&copy; "SUA MARCA AQUI" 2023</p>
     </footer>
 </body>
 </html>

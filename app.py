@@ -1,10 +1,13 @@
-# Criando o ambiente
+#####################################
+#              Imports              #
+#####################################
 from flask import Flask, render_template, request, redirect, session, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 
-
-# Inicializando o ambiente
+######################################################
+#              Inicializando o ambiente              #
+######################################################
 app = Flask(__name__, template_folder='template')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@localhost:3306/e_commerce_v2'
@@ -15,7 +18,13 @@ engine = create_engine("mysql://root:''@localhost:3306/e_commerce_v2", echo=True
 # engine.execute("CREATE DATABASE e_commerce_v2")
 db = SQLAlchemy(app)
 
-# Criando a classe do Produto
+
+#########################################################
+#    Criando as classes do banco de dados e do app.py   #
+#########################################################
+
+# Criando a classe do Produto                           
+
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     product_id = db.Column(db.String(10), nullable=False)
@@ -39,7 +48,10 @@ class User(db.Model):
     password = db.Column(db.String(255), nullable=False)
     cellphone = db.Column(db.String(20), nullable=False)
 
-# Criando as rotas
+######################################################################
+#                        Criando as rotas                            #
+######################################################################
+
 # Pagina inicial
 @app.route('/')
 def index():
@@ -47,14 +59,6 @@ def index():
     products = Product.query.all()
     return render_template('index.html', products=products, logged_in=session.get('logged_in'))
 
-@app.route('/report')
-def report():
-    products = Product.query.all()
-    users = User.query.all()
-    return render_template('report.html')
-
-######### Rotas de Usuário #########
-app.secret_key = 'A0293JF0A20FKAS'
 # Rota de conta
 @app.route('/account')
 def account():
@@ -68,11 +72,81 @@ def account():
     else:
         return redirect(url_for('login'))
 
+# Função para verificar se o usuário está logado
+def is_logged_in():
+    return 'user_id' in session
+
+
 # Rota de logout
 @app.route('/logout')
 def logout():
     session.clear()  # Limpa a sessão, efetivamente fazendo logout
     return redirect(url_for('login'))
+
+
+####################################
+#         Rotas de Usuário         #
+####################################
+
+app.secret_key = 'A0293JF0A20FKAS'
+
+# Função para verificar a força da senha
+def is_strong_password(password):
+    # A senha deve ter pelo menos 8 caracteres
+    if len(password) < 8:
+        return False
+
+    # Inicialize variáveis para rastrear a presença de diferentes tipos de caracteres
+    has_uppercase = False
+    has_lowercase = False
+    has_digit = False
+    has_special = False
+
+    # Percorra a senha para verificar os tipos de caracteres
+    for char in password:
+        if char.isupper():
+            has_uppercase = True
+        elif char.islower():
+            has_lowercase = True
+        elif char.isdigit():
+            has_digit = True
+        elif char in "!@#$%^&+=":
+            has_special = True
+
+    # Verifique se todos os critérios foram atendidos
+    return has_uppercase and has_lowercase and has_digit and has_special
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+
+        # Valide a força da senha aqui antes de criar o usuário
+        if not is_strong_password(password):
+            flash('Senha fraca. A senha deve conter pelo menos 8 caracteres, incluindo maiúsculas, minúsculas, números e caracteres especiais.', 'danger')
+        else:
+            # Consulta ao banco de dados para verificar se o e-mail já existe
+            user_with_email = User.query.filter_by(email=email).first()
+
+            if user_with_email:
+                flash('Usuário já cadastrado, efetue login ou recupere a senha', 'danger')
+            else:
+                # Crie um novo usuário com user_privileges igual a 0
+                new_user = User(user_privileges=0, name=username, username=username, email=email, password=password, cellphone='')
+
+                # Adicione o novo usuário ao banco de dados
+                db.session.add(new_user)
+                db.session.commit()
+
+                flash('Registro bem-sucedido!', 'success')
+                return redirect(url_for('login'))
+
+    return render_template('/account/auth/register.html')
+
+
 
 # Rota de login
 @app.route('/login', methods=['GET', 'POST'])
@@ -103,10 +177,10 @@ def login():
 
 
 
-#### Rotas de ADMIN ########
-# Função para verificar se o usuário está logado
-def is_logged_in():
-    return 'user_id' in session
+####################################
+#         Rotas de ADMIN           #
+####################################
+
 
 # Rota de administração
 @app.route('/admin')
@@ -124,7 +198,7 @@ def admin():
 
 
 
-# Rota para criar um novo usuário
+# Rota para o administrador criar um novo usuário no banco de dados
 @app.route('/create_user', methods=['POST'])
 def create_user():
     user_privileges = request.form['user_privileges']
@@ -139,7 +213,7 @@ def create_user():
     db.session.commit()
     return redirect('/admin')
 
-# Rota para editar um usuário
+# Rota para o administrador editar um usuário já existente no banco de dados
 @app.route('/edit_user/<int:user_id>', methods=['POST'])
 def edit_user(user_id):
     user = User.query.get_or_404(user_id)
@@ -161,7 +235,7 @@ def edit_user(user_id):
     db.session.commit()
     return redirect('/admin')
 
-# Rota para excluir um usuário
+# Rota para o administrador excluir um usuário
 @app.route('/delete_user/<int:user_id>', methods=['POST'])
 def delete_user(user_id):
     user = User.query.get_or_404(user_id)
@@ -169,14 +243,16 @@ def delete_user(user_id):
     db.session.commit()
     return redirect('/admin')
 
-# Rota para visualizar todos os usuários
+# Rota para o administrador visualizar todos os usuários cadastrados
 @app.route('/view_users')
 def view_users():
     users = User.query.all()
     return render_template('/account/auth/view_users.html', users=users)
 
 
-######### Rotas de Produtos #########
+####################################
+#         Rotas de Produtos        #
+####################################
 
 # Rota para listar todos os produtos
 @app.route('/products')
@@ -241,6 +317,9 @@ def view_products():
     products = Product.query.all()
     return render_template('products/view_products.html', products=products)
 
+######################################################################
+#                        END Criando as rotas                        #
+######################################################################
 
 # Executando o ambiente
 if __name__ == '__main__':

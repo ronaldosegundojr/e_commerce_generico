@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS Product (
     quantity INT NOT NULL
 );
 
--- Inserir 15 produtos de exemplo
+-- Inserir 5 produtos de exemplo
 INSERT INTO Product (product_id, product_name, description, product_img, price, discount, product_date, quantity)
 VALUES
     ('P001', 'Product 1', 'Description of Product 1', 'product1.jpg', 19.99, 10, '2023-09-20', 100),
@@ -35,13 +35,20 @@ VALUES
     ('P003', 'Product 3', 'Description of Product 3', 'product3.jpg', 29.99, 0, '2023-09-22', 120),
     ('P004', 'Product 4', 'Description of Product 4', 'product4.jpg', 34.99, 15, '2023-09-23', 90),
     ('P005', 'Product 5', 'Description of Product 5', 'product5.jpg', 39.99, 8, '2023-09-24', 110),
+    ('P006', 'Product 6', 'Description of Product 6', 'product6.jpeg', 45.99, 20, '2023-09-25', 75),
+    ('P007', 'Product 7', 'Description of Product 7', 'product7.jpeg', 49.99, 10, '2023-09-26', 95),
+    ('P008', 'Product 8', 'Description of Product 8', 'product8.jpeg', 54.99, 0, '2023-09-27', 85),
+    ('P009', 'Product 9', 'Description of Product 9', 'product9.jpeg', 59.99, 12, '2023-09-28', 105),
+    ('P010', 'Product 10', 'Description of Product 10', 'product10.jpeg', 64.99, 7, '2023-09-29', 70),
+    ('P011', 'Product 11', 'Description of Product 11', 'product11.jpeg', 69.99, 18, '2023-09-30', 115),
+    ('P012', 'Product 12', 'Description of Product 12', 'product12.jpeg', 74.99, 3, '2023-10-01', 65);
 
 
 -- Inserir 5 usuários de exemplo
 INSERT INTO User (user_privileges, name, username, email, password, cellphone)
 VALUES
-    (1, 'Admin User', 'admin', 'admin@example.com', 'admin_password', '1234567890'),
-    (0, 'User 1', 'user1', 'user1@example.com', 'user1_password', '9876543210'),
-    (0, 'User 2', 'user2', 'user2@example.com', 'user2_password', '5555555555'),
+    (1, 'Admin User', 'admin', 'admin@example.com', 'admin', '1234567890'),
+    (0, 'User 1', 'user', 'user1@example.com', 'user', '9876543210'),
+    (0, 'User 2', 'teste', 'user2@example.com', 'teste', '5555555555'),
     (0, 'User 3', 'user3', 'user3@example.com', 'user3_password', '1111111111'),
     (0, 'User 4', 'user4', 'user4@example.com', 'user4_password', '9999999999');
