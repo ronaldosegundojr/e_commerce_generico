@@ -165,7 +165,7 @@ def login():
             flash('Login bem-sucedido!', 'success')  # Exibe uma mensagem de sucesso
 
             if user.user_privileges == 1:
-                # O usuário é um administrador, redirecionar para /admin
+                # O usuário é um administrador, redirecionar para a pagina /admin
                 return redirect(url_for('admin'))
             else:
                 # O usuário não é um administrador, redirecionar para /account
