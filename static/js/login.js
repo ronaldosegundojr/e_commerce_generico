@@ -1,19 +1,24 @@
-// login.js
+document.addEventListener('DOMContentLoaded', function () {
+    const loginForm = document.querySelector('form'); // Seleciona o formulário de login
+    const errorMessage = document.querySelector('#error-message'); // Seleciona a div de mensagem de erro
 
-// Função para mostrar a janela pop-up
-function showErrorPopup(message) {
-    // Crie uma div para a janela pop-up
-    var popup = $("<div></div>");
-    popup.html(message);
-    popup.addClass("error-popup");
+    loginForm.addEventListener('submit', async function (e) {
+        e.preventDefault(); // Impede o envio padrão do formulário
 
-    // Adicione a div à página
-    $("body").append(popup);
+        const formData = new FormData(loginForm); // Cria um objeto FormData com os dados do formulário
 
-    // Configure um temporizador para remover a janela pop-up após alguns segundos
-    setTimeout(function() {
-        popup.fadeOut("slow", function() {
-            $(this).remove();
+        // Envie uma solicitação POST para a rota de login
+        const response = await fetch('/login', {
+            method: 'POST',
+            body: formData, // Envie os dados do formulário
         });
-    }, 3000); // A janela pop-up será removida após 3 segundos
-}
+
+        if (response.ok) {
+            // Login bem-sucedido, redirecione para a página desejada
+            window.location.href = '/account'; // Substitua com a página desejada
+        } else {
+            // Exiba a mensagem de erro
+            errorMessage.textContent = 'Usuário, e-mail ou senha inválidos.';
+        }
+    });
+});

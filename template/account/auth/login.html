@@ -9,22 +9,25 @@
 </head>
 <body class="dark">
     <header>
-        <h1>My Awesome Store</h1>
+        <h1>"SUA MARCA AQUI"</h1>
     </header>
     <main>
         <div class="content-container">
             <h2>Login/Sign Up</h2>
-            <form action="/login" method="POST"> <!-- Definindo método POST e action para a rota /login -->
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Insira o seu Login" required>
+            <form action="/login" method="POST">
+                <label for="username">Username (or E-mail)</label>
+                <input type="text" id="username" name="username" placeholder="Insira o seu Username ou E-mail" required>
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Insira a sua senha" required>
                 <button>Submit</button>
             </form>
+            
+            <!-- Mensagem de erro -->
+            <div id="error-message" style="color: red;"></div>
         </div>
     </main>
     <footer>
-        <p>&copy; My Awesome Store 2023</p>
+        <p>&copy; "SUA MARCA AQUI" 2023</p>
     </footer>
 </body>
 </html>

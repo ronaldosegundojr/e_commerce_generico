@@ -4,6 +4,61 @@
 from flask import Flask, render_template, request, redirect, session, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+########################################################################################
+#       Configurando o Envio de e-mails de criação de conta e de recuperar senha       #
+########################################################################################
+
+# Configurações de e-mail
+email_sender = 'seu_email@example.com'  # Seu endereço de e-mail
+email_password = 'sua_senha_de_email'   # Sua senha de e-mail
+smtp_server = 'smtp.example.com'        # Servidor SMTP do seu provedor de e-mail
+smtp_port = 587                         # Porta SMTP (587 para TLS)
+
+# Função para enviar um e-mail de confirmação de conta criada
+def enviar_email_confirmacao_conta(destinatario, nome_usuario):
+    try:
+        # Configurar a conexão SMTP
+        server = smtplib.SMTP(smtp_server, smtp_port)
+        server.starttls()
+        server.login(email_sender, email_password)
+
+        # Criar mensagem de e-mail
+        msg = MIMEMultipart()
+        msg['From'] = email_sender
+        msg['To'] = destinatario
+        msg['Subject'] = 'Confirmação de Registro'
+
+        # Corpo do e-mail
+        corpo_email = f"Olá {nome_usuario},\n\n"
+        corpo_email += f"Informamos que o seu usuário foi registrado no nosso site: http://127.0.0.1:5000/\n"
+        corpo_email += "Caso tenha alguma dúvida, problema ou caso o cadastro não tenha sido efetuado por você, entre em contato conosco.\n"
+        corpo_email += "Este é um e-mail automático."
+
+        # Adicionar o corpo do e-mail
+        msg.attach(MIMEText(corpo_email, 'plain'))
+
+        # Enviar o e-mail
+        server.sendmail(email_sender, destinatario, msg.as_string())
+
+        # Encerrar a conexão SMTP
+        server.quit()
+        return True
+    except Exception as e:
+        print(f"Erro ao enviar e-mail: {str(e)}")
+        return False
+
+# Exemplo de uso
+if enviar_email_confirmacao_conta('destinatario@example.com', 'Nome do Usuário'):
+    print('E-mail de confirmação de conta enviado com sucesso!')
+else:
+    print('Falha ao enviar o e-mail de confirmação de conta.')
+
+
+
 
 ######################################################
 #              Inicializando o ambiente              #
